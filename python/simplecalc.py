@@ -1,4 +1,5 @@
 import operator
+import sys
 # -*- coding: utf-8 -*-
 """
 --------------------------------------------------------------------------
@@ -74,10 +75,14 @@ def get_user_input():
         Returns tuple: (number, number, function) or
         (None, None, None) if inputs invalid
     """
+    if sys.version_info[0] >= 3:
+        get_input = input
+    else:
+        get_input = raw_input
     try:
-        num1 = float(input("Enter first number : "))
-        num2 = float(input("Enter second number: "))
-        op   = input("Enter function (valid values are, +, -, *, /): ")
+        num1 = float(get_input("Enter first number : "))
+        num2 = float(get_input("Enter second number: "))
+        op   = get_input("Enter function (valid values are, +, -, *, /): ")
         func = operators.get(op)
     except:
         return (None, None, None)
