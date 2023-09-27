@@ -1,11 +1,11 @@
-
+import operator
 # -*- coding: utf-8 -*-
 """
 --------------------------------------------------------------------------
 Simple Calculator
 --------------------------------------------------------------------------
 License:
-Copyright 2023 - <NAME>
+Copyright 2023 - Parnika Mandewalkar
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
 1. Redistributions of source code must retain the above copyright notice,
@@ -55,29 +55,35 @@ Error conditions:
 # NOTE - Global variable to map an operator string (e.g. "+") to
 # NOTE - the appropriate function.
 operators = {
+    "+" : operator.add,
+    "-" : operator.sub,
+    "*" : operator.mul,
+    "/" : operator.truediv,
+    ">>": operator.rshift,
+    "<<": operator.lshift,
+    "%" : operator.mod,
+    "**": operator.pow
+}
 # Dictionary syntax: "key" : "value"
 # i.e. "function" : operator.<function>
-}
 # ------------------------------------------------------------------------
 # Functions
 # ------------------------------------------------------------------------
 def get_user_input():
-""" Get input from the user.
-Returns tuple: (number, number, function) or
-(None, None, None) if inputs invalid
-"""
-# NOTE - Use "try"/"except" statements to allow code to handle errors
-gracefully.
-try:
-# NOTE - Use "pass" statements to allow code to be run without having to
-# NOTE - fill out the contents. This pass statement should be removed
-pass
-# NOTE - User input is generally returned as a string and must be
-translated.
-except:
-print("Invalid Input")
-return (None, None, None)
-# End def
+    """ Get input from the user.
+        Returns tuple: (number, number, function) or
+        (None, None, None) if inputs invalid
+    """
+    try:
+        num1 = float(eval(input("Enter first number : ")))
+        num2 = float(eval(input("Enter second number: ")))
+        op   = input("Enter function (valid values are, +, -, *, /): ")
+        func = operators.get(op)
+    except:
+        return (None, None, None)
+    
+    return (num1, num2, func)
+
 # ------------------------------------------------------------------------
 # Main script
 # ------------------------------------------------------------------------
@@ -90,13 +96,11 @@ return (None, None, None)
 # NOTE - import simple_calc
 # NOTE - the the "__name__" will be the module name, i.e. the string "simple_calc"
 if __name__ == "__main__":
-# NOTE - Need to add main calculator functionality:
-# NOTE - - Use a loop construct to repeat the operation
-# NOTE - - Get the input from the user (i.e. use function created above)
-# NOTE - - Check that all inputs are valid (exit the program if inputs
-invalid)
-# NOTE - - Execute the function on the numbers and print the results
-# NOTE - Use "pass" statements to allow code to be run without having to
-# NOTE - fill out the contents. This pass statement should be removed
-pass
+    while True:
+        (num1, num2, func) = get_user_input()
 
+        if (num1 == None) or (num2 == None) or (func == None):
+            print("Invalid input")
+            break
+
+        print(func(num1, num2))
