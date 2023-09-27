@@ -75,8 +75,8 @@ def get_user_input():
         (None, None, None) if inputs invalid
     """
     try:
-        num1 = float(eval(input("Enter first number : ")))
-        num2 = float(eval(input("Enter second number: ")))
+        num1 = float(input("Enter first number : "))
+        num2 = float(input("Enter second number: "))
         op   = input("Enter function (valid values are, +, -, *, /): ")
         func = operators.get(op)
     except:
