@@ -78,9 +78,7 @@ def get_user_input():
         num1 = float(input("Enter first number : "))
         num2 = float(input("Enter second number: "))
         op   = input("Enter function (valid values are, +, -, *, /): ")
-        print(op)
         func = operators.get(op)
-        print(func)
     except:
         return (None, None, None)
     
