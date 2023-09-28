@@ -85,7 +85,7 @@ class Button():
         # Initialize Button
         # HW#4 TODO: (one line of code)
         # Remove "pass" and use the Adafruit_BBIO.GPIO library to set up the button
-        pass
+        GPIO.setup('P2_2', GPIO.IN)
         # End def
     def is_pressed(self):
         """ Is the Button pressed?
@@ -95,7 +95,7 @@ class Button():
         # HW#4 TODO: (one line of code)
         # Remove "pass" and return the comparison of input value of the GPIO pin of
         # the buton (i.e. self.pin) to the "pressed value" of the class
-        pass
+        return self.pin == 1
         # End def
     def wait_for_press(self, function=None):
         """ Wait for the button to be pressed. This function will
@@ -126,7 +126,7 @@ class Button():
         # GPIO pin of the buton (i.e. self.pin) to the "unpressed value"
         # of the class (i.e. we are executing the while loop while the
         # button is not being pressed)
-        while(False):
+        while(self.pin == 0):
             if function is not None:
                 function_return_value = function()
             time.sleep(self.sleep_time)
@@ -140,7 +140,7 @@ class Button():
         # GPIO pin of the buton (i.e. self.pin) to the "pressed value"
         # of the class (i.e. we are executing the while loop while the
         # button is being pressed)
-        while(False):
+        while(self.pin == 1):
             time.sleep(self.sleep_time)
         # Compute the button_press_time
         button_press_time = time.time() - button_press_time
