@@ -33,7 +33,7 @@ Simple program to blink LED USR3 on Pocketbeagle
 """
 
 LED = "USR3"
-delay = 0.2
+delay = 0.1
 
 GPIO.setup(LED, GPIO.OUT)
 
