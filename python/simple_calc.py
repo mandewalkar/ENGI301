@@ -86,7 +86,7 @@ def get_user_input():
         func = operators.get(op)
     except:
         return (None, None, None)
-    if (op.equals("<<") or op.equals(">>")):
+    if (op.__eq__("<<") or op.__eq__(">>")):
         return (int(num1), int(num2), func)
     return (num1, num2, func)
 
