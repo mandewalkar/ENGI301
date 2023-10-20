@@ -1,6 +1,3 @@
-import operator
-import sys
-# -*- coding: utf-8 -*-
 """
 --------------------------------------------------------------------------
 Simple Calculator
@@ -55,41 +52,41 @@ Error conditions:
 # ------------------------------------------------------------------------
 # NOTE - Global variable to map an operator string (e.g. "+") to
 # NOTE - the appropriate function.
+import operator
+import sys
+
 operators = {
     "+" : operator.add,
-    "-" : operator.sub,
-    "*" : operator.mul,
-    "/" : operator.truediv,
-    ">>": operator.rshift,
-    "<<": operator.lshift,
-    "%" : operator.mod,
-    "**": operator.pow
+    '-' : operator.sub,
+    '*' : operator.mul,
+    '/' : operator.truediv,
+    '>>' : operator.rshift,
+    '<<' : operator.lshift,
+    '%' : operator.mod,
+    '**' : operator.pow,
+    
 }
-# Dictionary syntax: "key" : "value"
-# i.e. "function" : operator.<function>
 # ------------------------------------------------------------------------
 # Functions
 # ------------------------------------------------------------------------
 def get_user_input():
     """ Get input from the user.
-        Returns tuple: (number, number, function) or
-        (None, None, None) if inputs invalid
+    Returns tuple: (number, number, function) or
+    (None, None, None) if inputs invalid
     """
     if sys.version_info[0] >= 3:
         get_input = input
     else:
-        get_input = raw_input
+        get_input = raw_input  
     try:
-        num1 = float(get_input("Enter first number : "))
-        num2 = float(get_input("Enter second number: "))
-        op   = get_input("Enter function (valid values are, +, -, *, /, >>, <<, %, **): ")
+        num1 = int(input("Enter the first number : "))
+        num2 = int(input("Enter the second number: "))
+        op = input("Enter function (either +,-,*, or /): ")
         func = operators.get(op)
     except:
-        return (None, None, None)
-    if (op.__eq__("<<") or op.__eq__(">>")):
-        return (int(num1), int(num2), func)
-    return (num1, num2, func)
-
+        return(None, None, None)
+    return(num1,num2,func)
+# End def
 # ------------------------------------------------------------------------
 # Main script
 # ------------------------------------------------------------------------
@@ -103,10 +100,8 @@ def get_user_input():
 # NOTE - the the "__name__" will be the module name, i.e. the string "simple_calc"
 if __name__ == "__main__":
     while True:
-        (num1, num2, func) = get_user_input()
-
+        (num1,num2,func) = get_user_input()
         if (num1 == None) or (num2 == None) or (func == None):
-            print("Invalid input")
+            print('invalid input')
             break
-
-        print(func(num1, num2))
+        print(func(num1,num2))

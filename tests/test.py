@@ -3,7 +3,7 @@
 Onboard USB Blinker
 --------------------------------------------------------------------------
 License:
-Copyright 2021-2023 - Parnika Mandewalkar
+Copyright 2021-2023 - <Your Name>
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
 1. Redistributions of source code must retain the above copyright notice, this
@@ -33,12 +33,13 @@ That is really it.
 import Adafruit_BBIO.GPIO as GPIO
 import time
 
-GPIO.setup("USR3", GPIO.OUT)
+GPIO.setup("P2_2", GPIO.IN)
 freq = .5
 
 while True:
-    GPIO.output("USR3", GPIO.HIGH)
-    time.sleep((1/freq)/2) #Takes the inverse of the frequency and divides it by 2,
-                           #Such that the LED completes a cycle at the allotted freq
-    GPIO.output("USR3", GPIO.LOW)
-    time.sleep((1/freq)/2)
+    if GPIO.input("P2_2"):
+        print("HIGH")
+        time.sleep(.1)
+    else:
+        print("LOW")
+        time.sleep(.1)
