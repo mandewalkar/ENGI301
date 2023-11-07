@@ -34,8 +34,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 Software API:
 
   SPI_DISPLAY()
-    - Provide i2c bus that dispaly is on
-    - Provide i2c address for the display
+    - Provide spi bus that dispaly is on
+    - Provide spi address for the display
     
     blank()
       - Fills the display with black (i.e. color (0,0,0))
@@ -326,5 +326,58 @@ class SPI_Display():
     # End def
     
 # End class
+
+
+# ------------------------------------------------------------------------
+# Main script
+# ------------------------------------------------------------------------
+
+if __name__ == '__main__':
+    import time
+
+    delay = 2
+    
+    print("Test SPI Display:")
+    
+    print("Create Display")
+    display = SPI_Display()
+    time.sleep(delay)
+
+    # Test Functions
+    print("Fill Red")
+    display.fill((255, 0, 0))   
+    time.sleep(delay)
+
+    print("Fill Green")
+    display.fill((0, 255, 0))   
+    time.sleep(delay)
+    
+    print("Fill Blue")
+    display.fill((0, 0, 255))   
+    time.sleep(delay)
+    
+    print("Display blinka.jpg")
+    display.image("blinka.jpg")
+    time.sleep(delay)
+
+    print("Display Text")
+    display.text("This is some text!!")
+    time.sleep(delay)
+    
+    print("Display Multi-line Text")
+    display.text(["This is some text", "on multiple lines!!"])
+    time.sleep(delay)
+    
+    print("Display Multi-line Text, centered")
+    display.text(["This is some text", "on multiple lines!!"], justify=CENTER, align=CENTER)
+    time.sleep(delay)
+    
+    print("Display Multi-line Text, right justify, align bottom, fontsize 30")
+    display.text(["This is some text", "on multiple lines!!", "asdf", "asdf", "asdf", "abcdefghijklmnopqrstuvwxyz"], 
+                 fontsize=30, justify=RIGHT, align=BOTTOM)
+    time.sleep(delay)
+    
+    print("Test Finished.")
+
 
 
