@@ -357,7 +357,7 @@ if __name__ == '__main__':
     time.sleep(delay)
     
     print("Display blinka.jpg")
-    display.image("blinka.jpg")
+    display.image("vvlogo.png")
     time.sleep(delay)
 
     print("Display Text")
