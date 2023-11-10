@@ -35,7 +35,6 @@ while(1):
 			# wait for a second to let the recognizer
 			# adjust the energy threshold based on
 			# the surrounding noise level 
-			#r.adjust_for_ambient_noise(source2, duration=0.2)
 			
 			#listens for the user's input 
 			audio2 = r.listen(source2)
@@ -43,7 +42,7 @@ while(1):
 			# Using google to recognize audio
 			MyText = r.recognize_google(audio2)
 
-			print("Did you say ",MyText)
+			print(MyText)
 			#SpeakText(MyText)
 			
 	except sr.RequestError as e:
