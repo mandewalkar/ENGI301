@@ -36,65 +36,90 @@ class Touchscreen():
         
     
     def check_top_right(self):
+        if not self.is_touched():
+            return False
         if (self.x_coord < 800 and self.y_coord < 800):
             return True
         else:
             return False
         
     def check_top_left(self):
+        if not self.is_touched():
+            return False
         if (self.x_coord < 800 and self.y_coord > 3300):
             return True
         else:
             return False
 
     def check_bottom_right(self):
+        if not self.is_touched():
+            return False
         if (self.x_coord > 3300 and self.y_coord < 800):
             return True
         else:
             return False 
 
     def check_bottom_left(self):
+        if not self.is_touched():
+            return False
         if (self.x_coord > 3300 and self.y_coord > 3300):
             return True
         else:
             return False
 
     def check_middle(self):
+        if not self.is_touched():
+            return False
         if (self.x_coord < 2200 and self.x_coord > 1800 and self.y_coord < 2200 and self.y_coord > 1800):
             return True
         else:
             return False
         
+    def check_bottom_middle(self):
+        if not self.is_touched():
+            return False
+        if (self.x_coord > 2000 and self.y_coord > 1800 and self.y_coord < 2200):
+            return True
+        else:
+            return False
+            
+    def check_top_middle(self):
+        if not self.is_touched():
+            return False
+        if (self.x_coord < 2000 and self.y_coord > 1800 and self.y_coord < 2200):
+            return True
+        else:
+            return False
+        
     def check_quad_1(self):
+        if not self.is_touched():
+            return False
         if (self.x_coord < 2000 and self.y_coord < 2000):
             return True
         else:
             return False
         
     def check_quad_2(self):
+        if not self.is_touched():
+            return False
         if (self.x_coord < 2000 and self.y_coord > 2000):
             return True
         else:
             return False
 
     def check_quad_3(self):
+        if not self.is_touched():
+            return False
         if (self.x_coord > 2000 and self.y_coord > 2000):
             return True
         else:
             return False
 
     def check_quad_4(self):
+        if not self.is_touched():
+            return False
         if (self.x_coord > 2000 and self.y_coord < 2000):
             return True
         else:
             return False
-
-
-touchy = Touchscreen()
-try:
-    while(1):
-        if (touchy.is_touched()):
-            print(touchy.check_quad_4())
-except KeyboardInterrupt:
-    print("Program ended by user.")
     
