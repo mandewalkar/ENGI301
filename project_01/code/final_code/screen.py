@@ -105,7 +105,7 @@ class SPI_Display():
     
     def __init__(self, clk_pin=board.SCLK, miso_pin=board.MISO, mosi_pin=board.MOSI,
                        cs_pin=board.P1_6, dc_pin=board.P1_4, reset_pin=board.P1_2,
-                       baudrate=24000000, rotation=90):
+                       baudrate=24000000, rotation=270):
         """ SPI Display Constructor
         
         :param clk_pin   : Value must be a pin from adafruit board library
