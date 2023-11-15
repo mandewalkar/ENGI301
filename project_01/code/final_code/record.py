@@ -9,6 +9,9 @@ import argparse
 import tempfile
 import queue
 import sys
+import touch
+import os
+import glob
 
 import sounddevice as sd
 import soundfile as sf
@@ -60,27 +63,29 @@ def callback(indata, frames, time, status):
     q.put(indata.copy())
 
 
-try:
-    if args.samplerate is None:
-        device_info = sd.query_devices(args.device, 'input')
+touchscreen = touch.Touchscreen()
+for filename in glob.glob("voice*"):
+    os.remove(filename)
+for filename in glob.glob("winner*"):
+    os.remove(filename) 
+
+if args.samplerate is None:
+    device_info = sd.query_devices(args.device, 'input')
         # soundfile expects an int, sounddevice provides a float:
-        args.samplerate = int(device_info['default_samplerate'])
-    if args.filename is None:
-        args.filename = tempfile.mktemp(prefix='voice',
+    args.samplerate = int(device_info['default_samplerate'])
+if args.filename is None:
+    args.filename = tempfile.mktemp(prefix='voice',
                                         suffix='.wav', dir='')
 
     # Make sure the file is opened before recording anything:
-    with sf.SoundFile(args.filename, mode='x', samplerate=args.samplerate,
+with sf.SoundFile(args.filename, mode='x', samplerate=args.samplerate,
                       channels=args.channels, subtype=args.subtype) as file:
-        with sd.InputStream(samplerate=args.samplerate, device=args.device,
+    with sd.InputStream(samplerate=args.samplerate, device=args.device,
                             channels=args.channels, callback=callback):
-            print('#' * 80)
-            print('press Ctrl+C to stop the recording')
-            print('#' * 80)
-            while True:
+        print('#' * 80)
+        print('press Ctrl+C to stop the recording')
+        print('#' * 80)
+        while (not touchscreen.check_bottom_middle()):
                 file.write(q.get())
-except KeyboardInterrupt:
-    print('\nRecording finished: ' + repr(args.filename))
-    parser.exit(0)
-except Exception as e:
-    parser.exit(type(e).__name__ + ': ' + str(e))
+    
+        parser.exit(0)

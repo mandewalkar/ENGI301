@@ -1,5 +1,7 @@
 import screen
 import touch
+import os
+import transcribe
 
 if __name__ == '__main__':
     
@@ -12,7 +14,7 @@ if __name__ == '__main__':
     
     try:
         import time
-        delay = 5
+        delay = 2
         touchscreen = touch.Touchscreen()
         print('init display')
         display = screen.SPI_Display()
@@ -35,11 +37,24 @@ if __name__ == '__main__':
             if (touchscreen.check_bottom_middle() and start_rec):
                 print('touched, begin the recording')
                 display.image('rec.png')
+                os.system('sudo python3 record.py')
                 start_rec = False
                 stop_rec = True
-            if(touchscreen.check_bottom_middle() and stop_rec):
+            if(stop_rec):
                 print('touched, analyze')
                 display.image('analysis.png')
+                output = transcribe.analyze()
+                ret = display.text_fit(output, 25)
+                display.text(ret)
+                time.sleep(delay)
+                while(1):
+                    if os.path.isfile('winner.txt'):
+                        show = []
+                        with open('winner.txt') as file:
+                            for line in file:
+                                show.append(line)
+                        display.text('Prediction: ' + show[len(show)-1][19:len(show[len(show)-1])-2], justify=4, align=4)
+                        break
                 stop_rec = False
                 analysis = True
                     
