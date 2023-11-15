@@ -211,6 +211,14 @@ class SPI_Display():
         
     # End def
     
+    def text_fit(self, value, width):
+        toRet = []
+        while(len(value) > width):
+            toRet.append(value[0:width])
+            value = value[width:]
+        toRet.append(value)
+        return toRet
+
 
     def text(self, value, fontsize=24, fontcolor=(255,255,255), 
                    backgroundcolor=(0,0,0), justify=LEFT, align=TOP, 
@@ -283,10 +291,12 @@ class SPI_Display():
         # Get initial y position
         if align == TOP:
             y = 0
-        if align == BOTTOM:
+        elif align == BOTTOM:
             y = height - text_height
-        if align == CENTER:
-            y = (height // 2) - (text_height // 2) 
+        elif align == CENTER:
+            y = (height // 2) - (text_height // 2)
+        else:
+            y = align
         
         # Adjust y position by padding
         y = y + PADDING
