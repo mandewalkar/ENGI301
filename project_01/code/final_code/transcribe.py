@@ -35,41 +35,8 @@ Software API:
 
     NOTE: CODE IS CALIBRATED TO DEVICE WITH ORIENTATION 270 deg.
 
-    is_touched()
-      - returns True if the display has been touched
-    
-    check_top_right()
-      - returns True if the top right corner has been touched
-      
-    check_top_left()
-      - returns True if the top left corner has been touched
-      
-    check_bottom_right()
-      - returns True if the bottom right corner has been touched
-      
-    check_bottom_left()
-      - returns True if the bottom left corner has been touched
-      
-    check_middle()
-      - returns True if the middle has been touched
-      
-    check_bottom_middle()
-      - returns True if the bottom half of the screen but middle has been touched
-      
-    check_top_middle()
-      - returns True if the top half of the screen but middle has been touched
-      
-    check_quad_1()
-      - returns True if the top right quadrant has been touched
-      
-    check_quad_2()
-      - returns True if the top left quadrant has been touched
-      
-    check_quad_3()
-      - returns True if the bottom left quadrant has been touched
-      
-    check_quad_4()
-      - returns True if the bottom right quadrant has been touched
+    analyze()
+      - 
 
 
 --------------------------------------------------------------------------
@@ -88,7 +55,8 @@ import os
 
 def analyze():
     try:
-        #grab the file that starts with voice
+        #grab the file that starts with voice, replace with 
+        #name = <whatever file name>
         for filename in glob.glob("voice*"):
             name = filename 
             
