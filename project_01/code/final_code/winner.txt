@@ -1,8 +1,8 @@
 Class	Probability
-data/Brendan/	0.05
-data/Callum/	0.02
-data/Mr.Welsh/	0.11
-data/Parnika/	0.58
-data/Sahana/	0.16
-data/Sunny/	0.08
+data/Brendan/	0.06
+data/Callum/	0.10
+data/Mr.Welsh/	0.06
+data/Parnika/	0.64
+data/Sahana/	0.08
+data/Sunny/	0.06
 Winner class: data/Parnika/

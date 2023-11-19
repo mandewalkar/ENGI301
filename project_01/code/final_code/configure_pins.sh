@@ -31,7 +31,7 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # --------------------------------------------------------------------------
 # 
-# Configure pins for Combination Lock:
+# Configure pins for SPI Display:
 #   - SPI 0 - SCLK, MISO, MOSI
 #   - GPIO  - CS, RST, D/C
 # 
